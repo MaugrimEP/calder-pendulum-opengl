@@ -1,0 +1,42 @@
+<project name="Sample" basedir="." default="compile">
+
+    <property name="classname" value="Main"/>
+
+  <target name="doLinux">
+      <echo message="Came into the Unix target" />
+      <property name="myjoglpos" value="/usr/share/java/"/>
+      <property name="myjogl-all" value="jogl2"/>
+      <property name="mygluegen-rt" value="gluegen2-rt"/>
+  </target>
+
+    <target name="compile">
+        <echo message="Came into the compile target" />
+        <javac srcdir="." includeantruntime="false">
+            <classpath>
+                <pathelement location="/opt/jogamp-all-platforms/jar/jogl-all.jar"/>
+                <pathelement location="/opt/jogamp-all-platforms/jar/gluegen-rt.jar"/>
+
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="run" depends="compile">
+        <java classname="${classname}" fork="true">
+            <classpath>
+                <pathelement path="."/>
+                <pathelement location="/opt/jogamp-all-platforms/jar/jogl-all.jar"/>
+                <pathelement location="/opt/jogamp-all-platforms/jar/gluegen-rt.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+    <target name="clean">
+        <delete>
+            <fileset dir="." includes="*.class"/>
+            <fileset dir="vue" includes="*.class"/>
+            <fileset dir="modele" includes="*.class"/>
+            <fileset dir="controleur" includes="*.class"/>
+        </delete>
+    </target>
+
+</project>
