@@ -15,7 +15,7 @@
             <classpath>
                 <pathelement location="/opt/jogamp-all-platforms/jar/jogl-all.jar"/>
                 <pathelement location="/opt/jogamp-all-platforms/jar/gluegen-rt.jar"/>
-
+                <pathelement location="libs/org.json.jar"/>
             </classpath>
         </javac>
     </target>
