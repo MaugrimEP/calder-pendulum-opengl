@@ -42,16 +42,21 @@ public class Modele{
       PenduleHead penduleHead = new PenduleHead(1,1);
       Repere repere = new Repere();
 
-      ArrayList<Pendule> lesEnfants = penduleHead.getEnfants();
+      ArrayList<Objet3D> lesobjs = new ArrayList<Objet3D>();
+      lesobjs.add(penduleHead);
+      lesobjs.add(repere);
+      lesobjs.addAll(penduleHead.getEnfants());
+      lesobjs.add(new JSON());
 
-      int size=lesEnfants.size()+2;
+
+
+      int size=lesobjs.size();
 
       objets=new Objet3D[size];
-      objets[0]= repere;
-      objets[1]= penduleHead;
-      for(int i=2;i<size;++i)
+
+      for(int i=0;i<size;++i)
       {
-        objets[i]=lesEnfants.get(i-2);
+        objets[i]=lesobjs.get(i);
       }
 
 

@@ -41,7 +41,7 @@ public class PenduleHead extends ObjetSimple3D{
   public void affiche(GL2 gl){
     super.affiche(gl);
 
-    System.out.println("Head :"+x+","+y+","+z);
+    //System.out.println("Head :"+x+","+y+","+z);
 
     gl.glEnable(gl.GL_DEPTH_TEST);
     gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_LINE);

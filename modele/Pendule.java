@@ -53,7 +53,7 @@ public class Pendule extends ObjetSimple3D{
   public void affiche(GL2 gl){
     super.affiche(gl);
 
-    System.out.println("Enfant :"+x+","+y+","+z);
+    //System.out.println("Enfant :"+x+","+y+","+z);
 
     gl.glEnable(gl.GL_DEPTH_TEST);
     gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_FILL);
