@@ -45,7 +45,7 @@ public class Modele{
       ArrayList<Objet3D> lesobjs = new ArrayList<Objet3D>();
       lesobjs.add(penduleHead);
       lesobjs.add(repere);
-      lesobjs.addAll(penduleHead.getEnfants());
+      //lesobjs.addAll(penduleHead.getEnfants());
       lesobjs.add(new JSON());
 
 

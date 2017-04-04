@@ -7,7 +7,7 @@ public class Pendule extends ObjetSimple3D{
   static int RESOLUTION=6;
 
   static float HAUTEUR=5;
-  static float DECALAGE_ENFANT=2f;
+  static float DECALAGE_ENFANT=5f;
 
   ObjetSimple3D parent;
 
@@ -64,7 +64,13 @@ public class Pendule extends ObjetSimple3D{
     this.appliqueChangementRepere(gl);
 
 
+
     this.myGlut.glutSolidSphere(RADIUS, RESOLUTION, RESOLUTION);
+
+    for(Pendule enfant : enfants)
+    {
+      enfant.affiche(gl);
+    }
 
     gl.glEnd();
     gl.glPopMatrix();
@@ -73,11 +79,12 @@ public class Pendule extends ObjetSimple3D{
   public ArrayList<Pendule> getEnfants()
   {
     ArrayList<Pendule> tous = new ArrayList<Pendule>();
+    tous.add(this);
     for(Pendule enfant : enfants)
     {
       tous.addAll(enfant.getEnfants());
     }
-    tous.add(this);
+
     return tous;
   }
 
@@ -86,7 +93,6 @@ public class Pendule extends ObjetSimple3D{
     gl.glBegin(GL2.GL_LINES);
     for(Pendule enfant : enfants)
     {
-      enfant.update();
       gl.glColor3f(1,0,0);
       gl.glVertex3f(x,y,z);
       gl.glVertex3f(enfant.x,y,enfant.z);

@@ -56,6 +56,12 @@ public class PenduleHead extends ObjetSimple3D{
 
     //gl.glEnd();
     gl.glPopMatrix();
+
+    for(Pendule enfant : enfants)
+    {
+      enfant.affiche(gl);
+    }
+
   }
 
 
@@ -74,7 +80,6 @@ public class PenduleHead extends ObjetSimple3D{
     gl.glBegin(GL2.GL_LINES);
     for(Pendule enfant : enfants)
     {
-      enfant.update();
       gl.glColor3f(1,0,0);
       gl.glVertex3f(x,y,z);
       gl.glVertex3f(enfant.x,y,enfant.z);
