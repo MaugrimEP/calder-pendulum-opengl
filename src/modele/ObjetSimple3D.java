@@ -6,7 +6,7 @@ public abstract class ObjetSimple3D implements Objet3D {
 
   public GLUT myGlut= new GLUT();
 
-  static float ACCELERATION_MIN=0f;
+  static float ACCELERATION_MIN=-1f;
   static float ACCELERATION_MAX=1f;
 
   public float x;
@@ -27,10 +27,17 @@ public abstract class ObjetSimple3D implements Objet3D {
   abstract public void init(GL2 gl); // initialisation
   public void appliqueChangementRepere(GL2 gl) // Applique les transformations à effectuer avant l'affichage de l'objet
   {
-    gl.glRotatef(a,0,1,0);
+
     gl.glTranslated(x,y,z);
+    gl.glRotatef(a,0,1,0);
   }
 
+  public int enfantRandom(int min,int max)
+  {
+    Random rand = new Random();
+    return rand.nextInt() * (max + 1 - min) + min;
+
+  }
 
   public void update() // permet de faire évoluer l'objet
   {

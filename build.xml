@@ -1,6 +1,7 @@
 <project name="Sample" basedir="." default="compile">
 
-	<property name="jogl_jar_path" value="/home/mayet/prog3D/jogamp-all-platforms/jar/"/>
+
+	<property name="jogl_jar_path" value="/home/tsiry/Documents/openGL/PenduleDeCalder_OpenGL/libs/jogamp-all-platforms/jar/"/>
 
   <target name="compile">
     <mkdir dir="bin/classes"/>

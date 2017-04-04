@@ -26,19 +26,19 @@ public class Souris implements MouseListener{
 
           case MouseEvent.BUTTON1 ://gauche
           {
-            ((modele.Theiere)this.controleur.m.objets[1]).acceleration+=1;
+
             break;
           }
 
           case MouseEvent.BUTTON2 ://molette
           {
-            System.out.println("bouton2");
+
             break;
           }
 
           case MouseEvent.BUTTON3 ://droit
           {
-            ((modele.Theiere)this.controleur.m.objets[1]).acceleration-=1;
+            
             break;
           }
 

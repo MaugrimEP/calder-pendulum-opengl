@@ -15,7 +15,9 @@ public class Pendule extends ObjetSimple3D{
 
   int numeroEnfant;
 
-  public Pendule(int nombreEtage,int enfantsParEtage, ObjetSimple3D parent,int numeroEnfant, float acceleration)
+  int numeroEtage;
+
+  public Pendule(int nombreEtage,int enfantsParEtage, ObjetSimple3D parent,int numeroEnfant, float acceleration, int nextParent)
   {
     super();
 
@@ -24,6 +26,10 @@ public class Pendule extends ObjetSimple3D{
     this.parent=parent;
     this.numeroEnfant=numeroEnfant;
     this.acceleration=acceleration;
+    this.numeroEtage=nombreEtage;
+
+    int enfantEtageSuivant = enfantsParEtage+1;
+    nextParent = enfantRandom(0,enfantEtageSuivant-1);
 
     enfants=new ArrayList<Pendule>();
     if(nombreEtage!=0 && numeroEnfant==0)
@@ -31,7 +37,7 @@ public class Pendule extends ObjetSimple3D{
       float accelerationEnfants = getRandomAcceleration();
       for(int i=0;i<enfantsParEtage;++i)
       {
-        enfants.add(new Pendule(nombreEtage-1,enfantsParEtage+1,this,i,accelerationEnfants));
+        enfants.add(new Pendule(nombreEtage-1,enfantEtageSuivant,this,i,accelerationEnfants,nextParent));
       }
     }
   }
@@ -55,25 +61,18 @@ public class Pendule extends ObjetSimple3D{
   public void affiche(GL2 gl){
     super.affiche(gl);
 
-    //System.out.println("Enfant :"+x+","+y+","+z);
+    System.out.println(this);
 
     gl.glEnable(gl.GL_DEPTH_TEST);
-    gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_FILL);
-    gl.glPushMatrix();
+    gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_LINE);
+
+
     this.drawLines(gl);
+    gl.glPushMatrix();
     this.appliqueChangementRepere(gl);
-
-
-
     this.myGlut.glutSolidSphere(RADIUS, RESOLUTION, RESOLUTION);
-
-    for(Pendule enfant : enfants)
-    {
-      enfant.affiche(gl);
-    }
-
-    gl.glEnd();
     gl.glPopMatrix();
+
   }
 
   public ArrayList<Pendule> getEnfants()
@@ -101,4 +100,10 @@ public class Pendule extends ObjetSimple3D{
     }
     gl.glEnd();
   }
+
+  public String toString()
+  {
+    return "Enfant "+numeroEnfant+" etage "+numeroEtage+" "+x+" "+y+" "+z+" "+a;
+  }
+
 }

@@ -30,19 +30,19 @@ public class Clavier implements KeyListener{
                         break;
             case 'j'  : controleur.deplacerCam(0,-0.2,0);
                         break;
-            case 'v'  : ((modele.Theiere)this.controleur.m.objets[1]).setColor(0f,1f,0f);
+            case 'v'  :
                         break;
-            case 'r'  : ((modele.Theiere)this.controleur.m.objets[1]).setColor(255f,0f,0f);
+            case 'r'  :
                         break;
-            case 'n'  : ((modele.Theiere)this.controleur.m.objets[1]).setColor(0f,0f,0f);
+            case 'n'  :
                         break;
-            case 'b'  : ((modele.Theiere)this.controleur.m.objets[1]).setColor(0f,0f,255f);
+            case 'b'  :
                         break;
-            case 'B'  : ((modele.Theiere)this.controleur.m.objets[1]).setColor(1f,1f,1f);
+            case 'B'  :
                         break;
-            case 'm'  : ((modele.Theiere)this.controleur.m.objets[1]).setColor(255f, 0f, 255f);
+            case 'm'  :
                         break;
-            case 'c'  : ((modele.Theiere)this.controleur.m.objets[1]).setColor(0f,1f,1f);
+            case 'c'  :
                         break;
     }
     }

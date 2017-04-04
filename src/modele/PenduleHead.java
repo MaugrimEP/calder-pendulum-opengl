@@ -1,6 +1,7 @@
 package modele;
 import com.jogamp.opengl.GL2;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PenduleHead extends ObjetSimple3D{
 
@@ -17,12 +18,16 @@ public class PenduleHead extends ObjetSimple3D{
 
     enfants=new ArrayList<Pendule>();
 
+    int enfantEtageSuivant = enfantsParEtage+1;
+    int nextParent = enfantRandom(0,enfantEtageSuivant-1);
+
+
     if(nombreEtage>0)
     {
       float accelerationEnfants = getRandomAcceleration();
       for(int i=0;i<enfantsParEtage;++i)
       {
-        enfants.add(new Pendule(nombreEtage-1,enfantsParEtage+1,this,i,accelerationEnfants));
+        enfants.add(new Pendule(nombreEtage-1,enfantEtageSuivant,this,i,accelerationEnfants,nextParent));
       }
     }
 
@@ -43,24 +48,16 @@ public class PenduleHead extends ObjetSimple3D{
   public void affiche(GL2 gl){
     super.affiche(gl);
 
-    //System.out.println("Head :"+x+","+y+","+z);
+    System.out.println(this);
 
     gl.glEnable(gl.GL_DEPTH_TEST);
     gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_LINE);
-    gl.glPushMatrix();
     this.drawLines(gl);
+
+    gl.glPushMatrix();
     this.appliqueChangementRepere(gl);
-
-
     this.myGlut.glutSolidSphere(RADIUS, RESOLUTION, RESOLUTION);
-
-    //gl.glEnd();
     gl.glPopMatrix();
-
-    for(Pendule enfant : enfants)
-    {
-      enfant.affiche(gl);
-    }
 
   }
 
@@ -85,7 +82,14 @@ public class PenduleHead extends ObjetSimple3D{
       gl.glVertex3f(enfant.x,y,enfant.z);
       gl.glVertex3f(enfant.x,y,enfant.z);
       gl.glVertex3f(enfant.x,enfant.y,enfant.z);
+      System.out.println("drawLines :"+enfant);
     }
-    gl.glEnd();
+    //gl.glEnd();
   }
+
+  public String toString()
+  {
+    return "HEAD : "+x+" "+y+" "+z;
+  }
+
 }

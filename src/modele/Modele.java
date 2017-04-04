@@ -39,13 +39,13 @@ public class Modele{
 
     public Modele(){
 
-      PenduleHead penduleHead = new PenduleHead(2,1);
+      PenduleHead penduleHead = new PenduleHead(5,5);//nb étages, enfants par étages, 1,2
       Repere repere = new Repere();
 
       ArrayList<Objet3D> lesobjs = new ArrayList<Objet3D>();
       lesobjs.add(penduleHead);
       lesobjs.add(repere);
-      //lesobjs.addAll(penduleHead.getEnfants());
+      lesobjs.addAll(penduleHead.getEnfants());
       lesobjs.add(new JSON());
 
 
@@ -69,8 +69,13 @@ public class Modele{
         return objets;
     }
     public void update(){
+      int i=0;
         for (Objet3D objet : objets)
-            objet.update();
+        {
+          objet.update();
+          //System.out.println(i+" "+objet);
+          i++;
+        }
     }
 
 }
