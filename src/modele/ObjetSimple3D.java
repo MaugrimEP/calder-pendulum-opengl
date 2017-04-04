@@ -6,7 +6,7 @@ public abstract class ObjetSimple3D implements Objet3D {
 
   public GLUT myGlut= new GLUT();
 
-  static float ACCELERATION_MIN=1f;
+  static float ACCELERATION_MIN=0f;
   static float ACCELERATION_MAX=1f;
 
   public float x;
@@ -21,7 +21,6 @@ public abstract class ObjetSimple3D implements Objet3D {
   public ObjetSimple3D()
   {
     super();
-    setRandomAcceleration();
     setRandomCouleur();
   }
 
@@ -50,6 +49,22 @@ public abstract class ObjetSimple3D implements Objet3D {
       a=0;
     }
     a += acceleration ;
+    updateXYZ();
+  }
+
+  public void updateXYZ()
+  {
+    //la hauteur ne change jamais (Z), il faut positionner tout ça sur un cercle trigo
+    //la coordonnée en X est donc le sinus de A
+    //la coordonnée en Z est donc le cosinus de A
+    //mais il faut les multiplier par la norme du vecteur (0,0,0)>>(x,0,z);
+    double angleRad = Math.toRadians(a);
+    float cosinus = (float)Math.cos(angleRad);
+    float sinus = (float)Math.sin(angleRad);
+
+    x = sinus * x;
+    y=y;
+    z= cosinus * z;
   }
 
   public void setRandomCouleur()
@@ -64,8 +79,13 @@ public abstract class ObjetSimple3D implements Objet3D {
 
   public void setRandomAcceleration()
   {
+    this.acceleration = getRandomAcceleration();
+  }
+
+  public float getRandomAcceleration()
+  {
     Random rand = new Random();
-    this.acceleration= rand.nextFloat() * (ACCELERATION_MAX - ACCELERATION_MIN) + ACCELERATION_MIN;
+    return rand.nextFloat() * (ACCELERATION_MAX - ACCELERATION_MIN) + ACCELERATION_MIN;
   }
 
 }

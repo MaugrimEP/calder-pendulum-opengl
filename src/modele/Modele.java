@@ -39,7 +39,7 @@ public class Modele{
 
     public Modele(){
 
-      PenduleHead penduleHead = new PenduleHead(1,1);
+      PenduleHead penduleHead = new PenduleHead(2,1);
       Repere repere = new Repere();
 
       ArrayList<Objet3D> lesobjs = new ArrayList<Objet3D>();
