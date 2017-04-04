@@ -14,7 +14,7 @@ public abstract class ObjetSimple3D implements Objet3D {
   public float z;
 
   public float a=0f;
-  public float acceleration=1f;
+  public float acceleration;
 
   public float[] couleur;
 
@@ -35,7 +35,7 @@ public abstract class ObjetSimple3D implements Objet3D {
   public int enfantRandom(int min,int max)
   {
     Random rand = new Random();
-    return rand.nextInt() * (max + 1 - min) + min;
+    return rand.nextInt((max + 1 - min) + min) ;
 
   }
 

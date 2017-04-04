@@ -19,7 +19,10 @@ public class PenduleHead extends ObjetSimple3D{
     enfants=new ArrayList<Pendule>();
 
     int enfantEtageSuivant = enfantsParEtage+1;
-    int nextParent = enfantRandom(0,enfantEtageSuivant-1);
+
+    int nextParent = enfantRandom(0,enfantEtageSuivant-2);// les nombres doivent aller de 0 à enfantsParEtage-1
+    System.out.println("Range random :"+0+" up to "+ (enfantEtageSuivant-2));
+    System.out.println("nextParent "+nextParent);
 
 
     if(nombreEtage>0)
@@ -30,7 +33,6 @@ public class PenduleHead extends ObjetSimple3D{
         enfants.add(new Pendule(nombreEtage-1,enfantEtageSuivant,this,i,accelerationEnfants,nextParent));
       }
     }
-
   }
 
   public void init(GL2 gl){
@@ -48,7 +50,7 @@ public class PenduleHead extends ObjetSimple3D{
   public void affiche(GL2 gl){
     super.affiche(gl);
 
-    System.out.println(this);
+    //System.out.println(this);
 
     gl.glEnable(gl.GL_DEPTH_TEST);
     gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_LINE);
@@ -82,7 +84,7 @@ public class PenduleHead extends ObjetSimple3D{
       gl.glVertex3f(enfant.x,y,enfant.z);
       gl.glVertex3f(enfant.x,y,enfant.z);
       gl.glVertex3f(enfant.x,enfant.y,enfant.z);
-      System.out.println("drawLines :"+enfant);
+      //System.out.println("drawLines :"+enfant);
     }
     //gl.glEnd();
   }

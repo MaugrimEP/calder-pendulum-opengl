@@ -29,11 +29,14 @@ public class Pendule extends ObjetSimple3D{
     this.numeroEtage=nombreEtage;
 
     int enfantEtageSuivant = enfantsParEtage+1;
-    nextParent = enfantRandom(0,enfantEtageSuivant-1);
+
 
     enfants=new ArrayList<Pendule>();
-    if(nombreEtage!=0 && numeroEnfant==0)
+    if(nombreEtage!=0 && numeroEnfant==nextParent)
     {
+      nextParent = enfantRandom(0,enfantEtageSuivant-2);
+      System.out.println("Range random :"+0+" up to "+ (enfantEtageSuivant-2));
+      System.out.println("nextParent "+nextParent);
       float accelerationEnfants = getRandomAcceleration();
       for(int i=0;i<enfantsParEtage;++i)
       {
@@ -61,7 +64,7 @@ public class Pendule extends ObjetSimple3D{
   public void affiche(GL2 gl){
     super.affiche(gl);
 
-    System.out.println(this);
+    //System.out.println(this);
 
     gl.glEnable(gl.GL_DEPTH_TEST);
     gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_LINE);

@@ -48,8 +48,6 @@ public class Modele{
       lesobjs.addAll(penduleHead.getEnfants());
       lesobjs.add(new JSON());
 
-
-
       int size=lesobjs.size();
 
       objets=new Objet3D[size];
