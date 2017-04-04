@@ -1,42 +1,35 @@
 <project name="Sample" basedir="." default="compile">
 
-    <property name="classname" value="Main"/>
+	<property name="jogl_jar_path" value="/home/mayet/prog3D/jogamp-all-platforms/jar/"/>
 
-  <target name="doLinux">
-      <echo message="Came into the Unix target" />
-      <property name="myjoglpos" value="/usr/share/java/"/>
-      <property name="myjogl-all" value="jogl2"/>
-      <property name="mygluegen-rt" value="gluegen2-rt"/>
-  </target>
-
-    <target name="compile">
-        <echo message="Came into the compile target" />
-        <javac srcdir="." includeantruntime="false">
-            <classpath>
-                <pathelement location="/opt/jogamp-all-platforms/jar/jogl-all.jar"/>
-                <pathelement location="/opt/jogamp-all-platforms/jar/gluegen-rt.jar"/>
-                <pathelement location="libs/org.json.jar"/>
-            </classpath>
-        </javac>
+  <target name="compile">
+    <mkdir dir="bin/classes"/>
+      <javac srcdir="src" destdir="bin/classes" includeantruntime="false">
+	      <classpath>
+	        <pathelement path="."/>
+          <pathelement location="${jogl_jar_path}/jogl-all.jar"/>
+          <pathelement location="${jogl_jar_path}/gluegen-rt.jar"/>
+          <pathelement location="libs/org.json.jar"/>
+        </classpath>
+      </javac>
     </target>
 
-    <target name="run" depends="compile">
-        <java classname="${classname}" fork="true">
-            <classpath>
-                <pathelement path="."/>
-                <pathelement location="/opt/jogamp-all-platforms/jar/jogl-all.jar"/>
-                <pathelement location="/opt/jogamp-all-platforms/jar/gluegen-rt.jar"/>
-            </classpath>
-        </java>
+    <target name="dist" depends="compile">
+      <jar jarfile="bin/Main.jar" basedir="bin/classes">
+	<manifest>
+	  <attribute name="Main-class" value="Main"/>
+	 <attribute name="Class-Path" value="${jogl_jar_path}/jogl-all.jar ${jogl_jar_path}/gluegen-rt.jar ../libs/org.json.jar"/>
+
+	</manifest>
+      </jar>
+    </target>
+
+    <target name="run" depends="dist">
+        <java jar="bin/Main.jar" fork="true"/>
     </target>
 
     <target name="clean">
-        <delete>
-            <fileset dir="." includes="*.class"/>
-            <fileset dir="vue" includes="*.class"/>
-            <fileset dir="modele" includes="*.class"/>
-            <fileset dir="controleur" includes="*.class"/>
-        </delete>
+      <delete dir="bin"/>
     </target>
 
 </project>
