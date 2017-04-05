@@ -2,6 +2,7 @@ package modele;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.glu.GLU;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Modele{
     public Objet3D[] objets;
@@ -37,6 +38,17 @@ public class Modele{
         cam.positionner(gl, glu);
     }
 
+    public String getRandomFileName()
+    {
+      String lesNoms[] = {"elephant_low_ply","low_poly_tree","wolf_low_poly","X-Wing"};
+      int longueur = lesNoms.length;
+      Random rand = new Random();
+      int indice = rand.nextInt(longueur - 0 ) + 0;
+      System.out.println(lesNoms[indice]);
+      return lesNoms[indice];
+
+    }
+
 
     public Modele(){
 
@@ -46,8 +58,13 @@ public class Modele{
       ArrayList<Objet3D> lesobjs = new ArrayList<Objet3D>();
       lesobjs.add(penduleHead);
       lesobjs.add(repere);
-      lesobjs.addAll(penduleHead.getEnfants());
-      lesobjs.add(new JSON());
+      ArrayList<Objet3D> lesEnfants= new ArrayList<Objet3D>();
+      lesEnfants.addAll(penduleHead.getEnfants());
+      lesobjs.addAll(lesEnfants);
+      for(int d=0;d<lesEnfants.size();++d)
+      {
+        lesobjs.add(new JSON_VBO_shading(getRandomFileName(),(Pendule)lesEnfants.get(d)));
+      }
 
       int size=lesobjs.size();
 

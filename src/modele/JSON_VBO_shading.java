@@ -20,6 +20,15 @@ public class JSON_VBO_shading extends Maillage3D
 
   int[] buffers = new int[ 3 ];
 
+  Pendule monPendule;
+  String filename;
+
+  public JSON_VBO_shading(String filename,Pendule monPendule)
+  {
+    this.monPendule=monPendule;
+    this.filename=filename;
+  }
+
 
   private static double[] crossproduct( double[] v0, double[] v1 )
   {
@@ -125,7 +134,7 @@ public class JSON_VBO_shading extends Maillage3D
 
     try
     {
-      jsonString = new Scanner( new File("maillages/X-Wing.json")).useDelimiter("\\Z").next();
+      jsonString = new Scanner( new File("maillages/"+filename+".json")).useDelimiter("\\Z").next();
     }
     catch( FileNotFoundException e )
     {
@@ -188,7 +197,8 @@ public class JSON_VBO_shading extends Maillage3D
 
 
   public void appliqueChangementRepere(GL2 gl){
-    gl.glTranslatef(0.0f, 0.0f, -10.0f);
+    gl.glTranslatef(monPendule.x, monPendule.y, monPendule.z);
+    gl.glRotatef(monPendule.a,0,1,0);
   }
 
 
@@ -201,7 +211,7 @@ public class JSON_VBO_shading extends Maillage3D
 
     this.appliqueChangementRepere(gl);
 
-    gl.glColor3f(0.0f,0.0f,1.0f);
+    gl.glColor3f(monPendule.couleur[0],monPendule.couleur[1],monPendule.couleur[2]);
 
     // Activation des buffers contenants les données du modèle.
     gl.glBindBuffer( GL2.GL_ARRAY_BUFFER, buffers[ 0 ] );

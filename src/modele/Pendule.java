@@ -72,7 +72,7 @@ public class Pendule extends ObjetSimple3D{
     this.drawLines(gl);
     gl.glPushMatrix();
     this.appliqueChangementRepere(gl);
-    this.myGlut.glutSolidSphere(RADIUS, RESOLUTION, RESOLUTION);
+    //this.myGlut.glutSolidSphere(RADIUS, RESOLUTION, RESOLUTION);
     gl.glPopMatrix();
 
   }
