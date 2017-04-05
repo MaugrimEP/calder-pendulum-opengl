@@ -67,7 +67,7 @@ public class Pendule extends ObjetSimple3D{
     //System.out.println(this);
 
     gl.glEnable(gl.GL_DEPTH_TEST);
-    gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_LINE);
+    gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_FILL);
 
 
     this.drawLines(gl);

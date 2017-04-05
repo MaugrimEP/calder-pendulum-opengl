@@ -23,7 +23,7 @@ public class JSON extends Maillage3D
 
     try
     {
-      jsonString = new Scanner( new File("maillages/X-Wing.json")).useDelimiter("\\Z").next();
+      jsonString = new Scanner( new File("maillages/wolf_low_poly.json")).useDelimiter("\\Z").next();
     }
     catch( FileNotFoundException e )
     {
@@ -61,7 +61,7 @@ public class JSON extends Maillage3D
   }
 
   public void appliqueChangementRepere(GL2 gl){
-    gl.glTranslatef(0.0f, 0.0f, -10.0f);
+    //gl.glTranslatef(0.0f, 0.0f, -10.0f);
   }
 
   public void affiche(GL2 gl) {
