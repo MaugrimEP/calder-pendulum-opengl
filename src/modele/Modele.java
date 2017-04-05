@@ -15,6 +15,7 @@ public class Modele{
         void positionner(GL2 gl, GLU glu){
             gl.glLoadIdentity();
             glu.gluLookAt ( x,y,z ,dirX,dirY,dirZ,upX,upY,upZ);
+            //glu.gluLookAt(0,10,0,0,0,0,1,0,0);
         }
         void deplacer(double dx, double dy, double dz)
         {
@@ -39,7 +40,7 @@ public class Modele{
 
     public Modele(){
 
-      PenduleHead penduleHead = new PenduleHead(5,5);//nb étages, enfants par étages, 1,2
+      PenduleHead penduleHead = new PenduleHead(2,2);//nb étages, enfants par étages, 1,2
       Repere repere = new Repere();
 
       ArrayList<Objet3D> lesobjs = new ArrayList<Objet3D>();

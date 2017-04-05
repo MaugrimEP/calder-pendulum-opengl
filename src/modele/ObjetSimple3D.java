@@ -95,4 +95,15 @@ public abstract class ObjetSimple3D implements Objet3D {
     return rand.nextFloat() * (ACCELERATION_MAX - ACCELERATION_MIN) + ACCELERATION_MIN;
   }
 
+  public double distanceTo(ObjetSimple3D o)
+  {
+    return Math.sqrt(Math.pow(o.x-x,2.0)+Math.pow(o.y-y,2.0)+Math.pow(o.z-z,2.0));
+  }
+
+  public void printDistance(Pendule o)
+  {
+    double distance = distanceTo(o);
+    System.out.println(distance);
+  }
+
 }

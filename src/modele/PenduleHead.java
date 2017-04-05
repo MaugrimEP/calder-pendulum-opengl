@@ -80,13 +80,17 @@ public class PenduleHead extends ObjetSimple3D{
     for(Pendule enfant : enfants)
     {
       gl.glColor3f(1,0,0);
-      gl.glVertex3f(x,y,z);
-      gl.glVertex3f(enfant.x,y,enfant.z);
-      gl.glVertex3f(enfant.x,y,enfant.z);
+
+      gl.glVertex3f(x,y,z);//descendre 1/2 de la distance
+      gl.glVertex3f(x,y-(y-enfant.y)/2,z);
+
+      gl.glVertex3f(x,y-(y-enfant.y)/2,z);//déplacement latéral
+      gl.glVertex3f(enfant.x,y-(y-enfant.y)/2,enfant.z);
+
+      gl.glVertex3f(enfant.x,y-(y-enfant.y)/2,enfant.z);//descendre le reste
       gl.glVertex3f(enfant.x,enfant.y,enfant.z);
-      //System.out.println("drawLines :"+enfant);
     }
-    //gl.glEnd();
+    gl.glEnd();
   }
 
   public String toString()
