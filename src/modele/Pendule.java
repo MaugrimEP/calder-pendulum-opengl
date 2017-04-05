@@ -57,7 +57,6 @@ public class Pendule extends ObjetSimple3D{
     x=parent.x+DECALAGE_ENFANT*numeroEnfant;
     y=parent.y-HAUTEUR;
     z=parent.z;
-    updateXYZ();
     //a=parent.a+a;
   }
 
@@ -96,9 +95,14 @@ public class Pendule extends ObjetSimple3D{
     for(Pendule enfant : enfants)
     {
       gl.glColor3f(1,0,0);
-      gl.glVertex3f(x,y,z);
-      gl.glVertex3f(enfant.x,y,enfant.z);
-      gl.glVertex3f(enfant.x,y,enfant.z);
+
+      gl.glVertex3f(x,y,z);//descendre 1/2 de la distance
+      gl.glVertex3f(x,y-(y-enfant.y)/2,z);
+
+      gl.glVertex3f(x,y-(y-enfant.y)/2,z);//déplacement latéral
+      gl.glVertex3f(enfant.x,y-(y-enfant.y)/2,enfant.z);
+
+      gl.glVertex3f(enfant.x,y-(y-enfant.y)/2,enfant.z);//descendre le reste
       gl.glVertex3f(enfant.x,enfant.y,enfant.z);
     }
     gl.glEnd();
