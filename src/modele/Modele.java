@@ -40,7 +40,7 @@ public class Modele{
 
     public String getRandomFileName()
     {
-      String lesNoms[] = {"elephant_low_ply","low_poly_tree","wolf_low_poly","X-Wing"};
+      String lesNoms[] = {"elephant_low_ply","low_poly_tree","wolf_low_poly"};
       int longueur = lesNoms.length;
       Random rand = new Random();
       int indice = rand.nextInt(longueur - 0 ) + 0;
@@ -52,7 +52,7 @@ public class Modele{
 
     public Modele(){
 
-      PenduleHead penduleHead = new PenduleHead(2,2);//nb étages, enfants par étages, 1,2
+      PenduleHead penduleHead = new PenduleHead(5,5);//nb étages, enfants par étages, 1,2
       Repere repere = new Repere();
 
       ArrayList<Objet3D> lesobjs = new ArrayList<Objet3D>();

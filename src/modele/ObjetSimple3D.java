@@ -42,6 +42,7 @@ public abstract class ObjetSimple3D implements Objet3D {
   public void update() // permet de faire évoluer l'objet
   {
     updateAngle();
+    updateXYZ();
   }
 
   public void affiche(GL2 gl)
@@ -56,7 +57,6 @@ public abstract class ObjetSimple3D implements Objet3D {
       a=0;
     }
     a += acceleration ;
-    updateXYZ();
   }
 
   public void updateXYZ()
@@ -65,6 +65,10 @@ public abstract class ObjetSimple3D implements Objet3D {
     //la coordonnée en X est donc le sinus de A
     //la coordonnée en Z est donc le cosinus de A
     //mais il faut les multiplier par la norme du vecteur (0,0,0)>>(x,0,z);
+
+
+    //float distanceInitiale = Math.sqrt(Math.pow(x,2.0)+Math.pow(y,2.0)+Math.pow(z,2.0));
+
     double angleRad = Math.toRadians(a);
     float cosinus = (float)Math.cos(angleRad);
     float sinus = (float)Math.sin(angleRad);
@@ -98,6 +102,21 @@ public abstract class ObjetSimple3D implements Objet3D {
   public double distanceTo(ObjetSimple3D o)
   {
     return Math.sqrt(Math.pow(o.x-x,2.0)+Math.pow(o.y-y,2.0)+Math.pow(o.z-z,2.0));
+  }
+
+  public double distancePlanTo(ObjetSimple3D o)
+  {
+    return Math.sqrt(Math.pow(o.x-x,2.0)+Math.pow(o.z-z,2.0));
+  }
+
+  public double distanceOrigine()
+  {
+    return Math.sqrt(Math.pow(x,2.0)+Math.pow(y,2.0)+Math.pow(z,2.0));
+  }
+
+  public double distancePlanOrigine()
+  {
+    return Math.sqrt(Math.pow(x,2.0)+Math.pow(z,2.0));
   }
 
   public void printDistance(Pendule o)

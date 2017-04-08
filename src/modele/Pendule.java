@@ -51,8 +51,32 @@ public class Pendule extends ObjetSimple3D{
   public void appliqueChangementRepere(GL2 gl){
     super.appliqueChangementRepere(gl);
   }
+
+  // public void updateXYZ()
+  // {
+  //   //la hauteur ne change jamais (Z), il faut positionner tout ça sur un cercle trigo
+  //   //la coordonnée en X est donc le sinus de A
+  //   //la coordonnée en Z est donc le cosinus de A
+  //   //mais il faut les multiplier par la norme du vecteur (0,0,0)>>(x,0,z);
+  //
+  //   float distanceInitiale = (float)distancePlanTo(parent); // L
+  //
+  //   double angleRad = Math.toRadians(a);
+  //   float cosinus = (float)Math.cos(angleRad);
+  //   float sinus = (float)Math.sin(angleRad);
+  //
+  //   float distanceOrigine = (float)distancePlanOrigine();//l , peut etre egale a O
+  //
+  //   float scaling = (distanceOrigine==0)?0:distanceInitiale/distanceOrigine;
+  //   //je veux L = scaling * l
+  //   x = sinus * scaling;
+  //   y=y;
+  //   z= cosinus * scaling;
+  // }
+
   public void update(){
-    super.update();
+    updateAngle();
+    updateXYZ();
 
     x=parent.x+DECALAGE_ENFANT*numeroEnfant;
     y=parent.y-HAUTEUR;
